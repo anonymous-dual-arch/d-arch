@@ -283,7 +283,7 @@ class FOSTER(BaseLearner):
             optimizer=optimizer, T_max=self.args["compression_epochs"]
         )
         self._network.eval()
-        for _, epoch in range(self.args["compression_epochs"]):
+        for epoch in range(self.args["compression_epochs"]):
             self._snet.train()
             losses = 0.0
             correct, total = 0, 0

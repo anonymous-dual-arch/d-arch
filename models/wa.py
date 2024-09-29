@@ -140,8 +140,7 @@ class WA(BaseLearner):
 
     def _update_representation(self, train_loader, test_loader, optimizer, scheduler):
         kd_lambda = self._known_classes / self._total_classes
-        prog_bar = tqdm(range(epochs))
-        for _, epoch in enumerate(prog_bar):
+        for epoch in range(epochs):
             self._network.train()
             losses = 0.0
             correct, total = 0, 0
