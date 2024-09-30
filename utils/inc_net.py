@@ -9,6 +9,7 @@ from networks.memo_resnet import  get_resnet18_imagenet as get_memo_resnet18
 from networks.arch_craft import arch_craft
 from networks.resnet_scale import resnet_scale
 from networks.memo_resnet_scale import get_resnet_scale as get_memo_resnet_scale
+from networks.memo_arch_craft import get_arch_craft as get_memo_arch_craft
 
 
 def get_convnet(args, pretrained=False):
@@ -33,6 +34,9 @@ def get_convnet(args, pretrained=False):
     #Arch_Craft
     elif name == 'arch_craft':
         return arch_craft(pretrained=False,args=args)
+    elif name == 'memo_arch_craft':
+        _basenet, _adaptive_net = get_memo_arch_craft(args=args)
+        return _basenet, _adaptive_net
     
     #Dual-Arch
     elif name == 'resnet_scale':
@@ -682,3 +686,4 @@ class AdaptiveNet(nn.Module):
         self.fc.load_state_dict(model_infos['fc'])
         test_acc = model_infos['test_acc']
         return test_acc
+    
